@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mẹ Yêu Của Con! ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #ffe5ec, #ffc2d1);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 90%;
+            width: 450px;
+            z-index: 10;
+            backdrop-filter: blur(5px);
+            border: 2px solid #ffb3c6;
+        }
+        h1 {
+            color: #ff4d6d;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+        .gift-box {
+            font-size: 80px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            animation: bounce 2s infinite;
+            display: inline-block;
+        }
+        .gift-box:hover {
+            transform: scale(1.15);
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+        .wish-box {
+            display: none;
+            margin-top: 20px;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+        .wish-text {
+            font-size: 1.2rem;
+            color: #c9184a;
+            line-height: 1.6;
+            font-weight: 500;
+            margin-bottom: 25px;
+            background: #fff0f3;
+            padding: 15px;
+            border-radius: 12px;
+            border-left: 5px solid #ff4d6d;
+        }
+        button {
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #ff758f;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 77, 109, 0.6);
+        }
+        .petal {
+            position: absolute;
+            background-color: #ffb3c6;
+            border-radius: 150% 0 150% 150%;
+            opacity: 0.7;
+            pointer-events: none;
+            animation: fade 10s infinite linear;
+        }
+        @keyframes fade {
+            0% { top: -10%; transform: translateX(0) rotate(0deg); }
+            100% { top: 110%; transform: translateX(100px) rotate(360deg); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 id="title">Mẹ Yêu Của Con! ❤️</h1>
+        <div class="gift-box" id="gift" onclick="openGift()">🎁</div>
+        
+        <div class="wish-box" id="wishBox">
+            <div class="wish-text" id="wishText">Đang chuẩn bị lời chúc yêu thương...</div>
+            <button onclick="changeWish()">Xem lời chúc khác ✨</button>
+        </div>
+    </div>
+
+    <script>
+        const wishes = [
+            "Chúc mẹ yêu của con một ngày 20/10 tràn ngập niềm vui, hạnh phúc và sức khỏe. Con hạnh phúc vì được làm con của mẹ! ❤️",
+            "Mẹ ơi, con chúc mẹ luôn tươi trẻ, bình an và không còn những lo toan. Cảm ơn mẹ vì đã luôn hy sinh thầm lặng vì gia đình mình. 🌹",
+            "Chúc người phụ nữ tuyệt vời nhất thế giới của con ngày 20/10 thật ý nghĩa. Con yêu mẹ nhiều hơn những lời con có thể nói! ✨",
+            "Cầu mong mọi điều tốt đẹp, may mắn và nụ cười luôn nở trên môi mẹ không chỉ hôm nay mà là suốt 365 ngày trong năm! 🥰",
+            "Cám ơn Mẹ đã sinh ra con và nuôi dưỡng con nên người. Chúc mẹ ngày 20/10 luôn dồi dào sức khỏe, tràn đầy niềm vui!"
+        ];
+
+        function openGift() {
+            document.getElementById('gift').style.display = 'none';
+            document.getElementById('wishBox').style.display = 'block';
+            document.getElementById('title').innerText = "Chúc Mừng Ngày 20/10! 💐";
+            changeWish();
+            createPetals();
+        }
+
+        function changeWish() {
+            const randomIndex = Math.floor(Math.random() * wishes.length);
+            document.getElementById('wishText').innerText = wishes[randomIndex];
+        }
+
+        function createPetals() {
+            for (let i = 0; i < 30; i++) {
+                let petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.style.left = Math.random() * window.innerWidth + 'px';
+                petal.style.top = Math.random() * -20 + 'px';
+                let size = Math.random() * 12 + 8;
+                petal.style.width = size + 'px';
+                petal.style.height = size + 'px';
+                petal.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                petal.style.animationDelay = Math.random() * 5 + 's';
+                document.body.appendChild(petal);
+            }
+        }
+    </script>
+</body>
+</html>
